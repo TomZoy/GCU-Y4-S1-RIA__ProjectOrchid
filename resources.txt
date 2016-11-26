@@ -1,4 +1,0 @@
-- images+2php file provided by assignor
-- bootstrap ( http://getbootstrap.com )
-- jQuery (http://jquery.com)
-- jQuery UI ( http://jqueryui.com/ )

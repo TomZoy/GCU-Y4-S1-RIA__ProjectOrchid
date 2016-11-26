@@ -1,0 +1,44 @@
+﻿.myPurple1{
+    background-color: #ffe2e4 !important;
+}
+
+.myPurple2{
+    background-color: #ecb0cc !important;
+}
+
+.myPurple3{
+    background-color: #c47094 !important;
+}
+
+.myPurple4{
+    background-color: #632e4c !important;
+}
+
+.myGreen1{
+    background-color: #5e6724 !important;
+}
+
+.myTeal{
+    background-color: #ddc482 !important;
+}
+
+body{
+    background-color: #ddc482;
+}
+
+
+#heroImage {
+    background-color: #ddc482;
+    max-width: 100%; 
+    height:550px;
+    background-repeat:no-repeat; 
+    background-size:cover; 
+    background-position:center;
+}
+
+
+
+/* overWriting the framework*/
+.page-footer{
+    padding-top: 0px !important;
+}
