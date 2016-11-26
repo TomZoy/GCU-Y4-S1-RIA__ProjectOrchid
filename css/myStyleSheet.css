@@ -42,3 +42,16 @@ body{
 .page-footer{
     padding-top: 0px !important;
 }
+
+#navbarCenter {
+    position:relative;
+    left:50px;
+}
+
+
+/* overWriting the Fotorama plugin */
+.fotorama__caption {
+
+    opacity: 0.8;
+
+}

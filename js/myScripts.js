@@ -98,3 +98,10 @@ $(document).ready(function () {
         }
     });
 });
+
+
+//set up the accordions
+$(document).ready(function () {
+    $('.collapsible').collapsible();
+});
+

@@ -12,23 +12,59 @@
     <link rel="mask-icon" href="safari-pinned-tab.svg" color="#c47094">
     <meta name="theme-color" content="#ffffff">
 
-
-    <!--Import Google Icon Font-->
-    <link href="css/googleFont.css" rel="stylesheet" />
-    <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
-
     <!--Let browser know website is optimized for mobile-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- import custom css-->
-    <link href="css/myStyleSheet.css" rel="stylesheet" />
+
+    <!--Import Google Icon Font-->
+    <link href="css/googleFont.css" rel="stylesheet" />
+    <!--Import FontAwesome-->
+    <link href="css/font-awesome.min.css" rel="stylesheet" />
+
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+    <!--Import fotorama.css for image slider-->
+    <link href="css/fotorama.css" rel="stylesheet" />
+
+
 
     <!--Import jQuery before materialize.js-->
     <script src="js/jquery-3.1.1.min.js"></script>
     <script type="text/javascript" src="js/materialize.min.js"></script>
 
+
+
+
+    <!-- import custom css-->
+    <link href="css/myStyleSheet.css" rel="stylesheet" />
+
+    <!-- import custom JS -->
+
     <script src="js/myScripts.js"></script>
+
+    <script>
+        /* THIS IS A DEUGGING SCRIPT */
+        /* it must be entirely commented out when not debugging! */
+        $(document).ready(function () {
+            //switches:
+            var activePage;
+            //activePage = "main";
+            activePage = "details";
+
+
+            //appliers
+            if (activePage == "main") {
+                $(".mainPage").show();
+                $(".detailsPage").hide();
+            }
+            if (activePage == "details") {
+                $(".mainPage").hide();
+                $(".detailsPage").show();
+            }
+
+        });
+
+    </script>
 
 </head>
 
@@ -36,20 +72,21 @@
 <body>
     <header id="top" class="section scrollspy no-pad-top">
 
+
+
+        <nav>
+            <div class="nav-wrapper">
+                <a href="#" class="brand-logo">Glasgow Museums</a>
+                <!--<span class="brand-logo" id="navbarCenter">Kelvingrove Art Gallery and Museum</span>-->
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="#top">Home</a></li>
+                    <li><a href="#featured">Featured venues</a></li>
+                    <li><a href="#">About</a></li>
+                </ul>
+            </div>
+        </nav>
+
         <div class="mainPage">
-
-            <nav>
-                <div class="nav-wrapper">
-                    <a href="#" class="brand-logo">Glasgow Museums</a>
-                    <ul id="nav-mobile" class="right hide-on-med-and-down">
-                        <li><a href="#top">Home</a></li>
-                        <li><a href="#featured">Featured venues</a></li>
-                        <li><a href="#">About</a></li>
-                    </ul>
-                </div>
-            </nav>
-
-
             <div id="heroImage" class="hero valign-wrapper">
 
                 <div class="container">
@@ -69,6 +106,48 @@
 
         <div class="detailsPage">
 
+
+            <div class="fotorama"
+                 data-loop="true"
+                 data-autoplay="true"
+                 data-shuffle="true"
+                 data-arrows="true"
+                 data-click="true"
+                 data-swipe="false">
+
+                <img src="images/Kelvingrove_Front_View_1 (Medium).jpg" data-caption="Front View Of Kelvingrove 1">
+                <img src="images/Kelvingrove_Front_View_2 (Medium).jpg" data-caption="Front View Of Kelvingrove 2">
+                <img src="images/Kelvingrove_Front_View_3 (Medium).jpg" data-caption="Front View Of Kelvingrove 3">
+                <img src="images/Kelvingrove_Front_View_4 (Medium).jpg" data-caption="Front View Of Kelvingrove 4">
+            </div>
+
+
+
+            <!--
+                Framework version - doesn't work that well =S
+
+                <div class="carousel carousel-slider center">
+                <a class="carousel-item" href="#">
+
+
+
+                        <img src="images/Kelvingrove_Front_View_1 (Medium).jpg">
+                    <span style="position:relative; top:500px; z-index:1000"> something here </span>
+
+
+                </a>
+                <a class="carousel-item" href="#"><img src="images/Kelvingrove_Front_View_2 (Medium).jpg"></a>
+                <a class="carousel-item" href="#"><img src="images/Kelvingrove_Front_View_3 (Medium).jpg"></a>
+                <a class="carousel-item" href="#"><img src="images/Kelvingrove_Front_View_4 (Medium).jpg"></a>
+                <a class="carousel-item" href="#"><img src="images/Kelvingrove_Rear_View_1 (Medium).jpg"></a>
+                <a class="carousel-item" href="#"><img src="images/Kelvingrove_Rear_View_2 (Medium).jpg"></a>
+                <a class="carousel-item" href="#"><img src="images/Organ_Kelvingrove (Medium).jpg"></a>
+                <a class="carousel-item" href="#"><img src="images/Heads_Kelvingrove (Medium).jpg"></a>
+                <a class="carousel-item" href="#"><img src="images/Plane_Elephant_Giraffe (Medium).jpg"></a>
+
+            </div>-->
+
+
         </div>
 
     </header>
@@ -76,8 +155,6 @@
     <main>
 
         <div class="mainPage">
-
-
 
             <div class="container">
                 <div class="row">
@@ -132,12 +209,118 @@
 
 
             </div>
-            <h1 class="myPurple3">hello world</h1>
+
 
 
         </div>
 
         <div class="detailsPage">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col s12">
+                        <section>Glasgow's main art gallery and museum situated in the west end of the city.</section>
+                    </div>
+                </div>
+
+                <div class="row valign-wrapper" style="background-color:blueviolet">
+
+                    <div class="col s12 m5" style="background-color:aqua">
+                        <h5> Opening times </h5>
+
+                        <section style="padding-left:25px;">
+                            <p>
+                                NOW OPEN <br />
+                                closing in 1h 15m
+                            </p>
+                        </section>
+
+                        <ul class="collapsible" data-collapsible="accordion">
+                            <li>
+                                <div class="collapsible-header active"><i class="material-icons mdi-maps-place">schedule</i>Opening Hours</div>
+                                <div class="collapsible-body"><p>"Monday"=>"10am-5pm","Tuesday"=>"10am-5pm","Wednesday"=>"10am-5pm","Thursday"=>"10am-5pm","Friday"=>"11am-5pm","Saturday"=>"10am-5pm","Sunday"=>"11am-5pm"</p></div>
+                            </li>
+                        </ul>
+
+                        <ul class="collapsible" data-collapsible="accordion">
+                            <li>
+                                <div class="collapsible-header active"><i class="material-icons mdi-maps-place">today</i>Closed On</div>
+                                <div class="collapsible-body"><p>"January 1st", "January 2nd", "December 24th", "December 25th", "December 26th", "December 31st"</p></div>
+                            </li>
+                        </ul>
+
+                    </div>
+
+                    <div class="col s12 m6 offset-m1 valign" style="background-color:green">
+                        <img src="https://maps.googleapis.com/maps/api/streetview?size=520x450&location=55.8682124,-4.29205789999000&heading=55&pitch=20&key=AIzaSyC-T0UVqFqdETvEgn3pcG4Tx_NTgx1HwlM" />
+                    </div>
+
+                </div>
+
+
+                <div class="row valign-wrapper" style="background-color:greenyellow">
+
+                    <div class="col s12 m4" style="background-color:aqua">
+                        <h5> Getting there </h5>
+
+
+                        <ul class="collection">
+                            <li class="collection-item avatar">
+                                <i class="fa fa-car blue" aria-hidden="true"></i>
+                                <span class="title">driving_miles</span>
+                                <p>
+                                    First Line <br>
+                                    Second Line
+                                </p>
+                            </li>
+                            <li class="collection-item avatar">
+                                <i class="material-icons circle">query_builder</i>
+                                <span class="title">driving_minutes</span>
+                                <p>
+                                    First Line <br>
+                                    Second Line
+                                </p>
+                            </li>
+                            <li class="collection-item avatar">
+                                <i class="fa fa-male" aria-hidden="true"></i>
+                                <span class="title">walking_miles</span>
+                                <p>
+                                    First Line <br>
+                                    Second Line
+                                </p>
+                            </li>
+                            <li class="collection-item avatar">
+                                <i class="material-icons circle red">query_builder</i>
+                                <span class="title">walking_minutes</span>
+                                <p>
+                                    First Line <br>
+                                    Second Line
+                                </p>
+                            </li>
+                        </ul>
+
+                    </div>
+
+                    <div class="col s12 m7 offset-m1 valign" style="background-color:green">
+                        <iframe width="610"
+                                height="270"
+                                frameborder="0" 
+                                style="border:0"
+                                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyACI9vLSWY5qyJsCEI5JFqRJfNiVPwrJc0&q=Space+Needle,Seattle+WA" 
+                                allowfullscreen
+                                >
+
+                        </iframe>
+                    </div>
+
+                </div>
+
+
+
+
+
+            </div>
+
         </div>
     </main>
 
@@ -152,15 +335,38 @@
     </footer>
 
 
+    <!--Import fotorama.css for image slider-->
+    <script src="js/fotorama.js"></script>
+
+    <!-- load other scripts -->
+    <script>
+
+        loadKeyTerms();
+        loadMuseums();
+
+
+        /* THIS IS A DEUGGING SCRIPT */
+        /* it must be entirely commented out when not debugging! */
+        $(document).ready(function () {
+            //switches:
+            var activePage;
+            //activePage = "main";
+            activePage = "details";
+
+
+            //appliers
+            if (activePage == "main") {
+                $(".mainPage").show();
+                $(".detailsPage").hide();
+            }
+            if (activePage == "details") {
+                $(".mainPage").hide();
+                $(".detailsPage").show();
+            }
+
+        });
+
+    </script>
 
 </body>
 </html>
-
-<!-- load other scripts -->
-
-<script>
-
-    loadKeyTerms();
-    loadMuseums();
-
-</script>
