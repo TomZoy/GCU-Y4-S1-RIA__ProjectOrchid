@@ -26,10 +26,14 @@
     <!--Import fotorama.css for image slider-->
     <link href="css/fotorama.css" rel="stylesheet" />
 
+    <!-- import caption css -->
+    <link href="css/captionjs.min.css" rel="stylesheet" />
+
 
 
     <!--Import jQuery before materialize.js-->
     <script src="js/jquery-3.1.1.min.js"></script>
+    <!--<script src="https://code.jquery.com/jquery-migrate-3.0.0.js"></script>-->
     <script type="text/javascript" src="js/materialize.min.js"></script>
 
 
@@ -46,33 +50,40 @@
         /* THIS IS A DEUGGING SCRIPT */
         /* it must be entirely commented out when not debugging! */
         $(document).ready(function () {
+
+            
             //switches:
             var activePage;
             //activePage = "main";
             activePage = "details";
 
 
+
             //appliers
             if (activePage == "main") {
+                console.log("main is active");
                 $(".mainPage").show();
                 $(".detailsPage").hide();
             }
             if (activePage == "details") {
+                console.log("details is active");
                 $(".mainPage").hide();
                 $(".detailsPage").show();
             }
+            
 
         });
 
     </script>
+
+
+
 
 </head>
 
 
 <body>
     <header id="top" class="section scrollspy no-pad-top">
-
-
 
         <nav>
             <div class="nav-wrapper">
@@ -252,7 +263,10 @@
                     </div>
 
                     <div class="col s12 m6 offset-m1 valign" style="background-color:green">
-                        <img src="https://maps.googleapis.com/maps/api/streetview?size=520x450&location=55.8682124,-4.29205789999000&heading=55&pitch=20&key=AIzaSyC-T0UVqFqdETvEgn3pcG4Tx_NTgx1HwlM" />
+
+
+                        imageToCaption
+
                     </div>
 
                 </div>
@@ -263,10 +277,10 @@
                     <div class="col s12 m4" style="background-color:aqua">
                         <h5> Getting there </h5>
 
-
                         <ul class="collection">
                             <li class="collection-item avatar">
-                                <i class="fa fa-car blue" aria-hidden="true"></i>
+
+                                <i class="fa-lg fa fa-car circleBorder carBorder" aria-hidden="true"></i>
                                 <span class="title">driving_miles</span>
                                 <p>
                                     First Line <br>
@@ -274,7 +288,7 @@
                                 </p>
                             </li>
                             <li class="collection-item avatar">
-                                <i class="material-icons circle">query_builder</i>
+                                <i class="fa-lg fa fa-clock-o circleBorder clockBorder" aria-hidden="true"></i>
                                 <span class="title">driving_minutes</span>
                                 <p>
                                     First Line <br>
@@ -282,7 +296,7 @@
                                 </p>
                             </li>
                             <li class="collection-item avatar">
-                                <i class="fa fa-male" aria-hidden="true"></i>
+                                <i class="fa-lg fa fa-male circleBorder manBorder" aria-hidden="true"></i>
                                 <span class="title">walking_miles</span>
                                 <p>
                                     First Line <br>
@@ -290,7 +304,7 @@
                                 </p>
                             </li>
                             <li class="collection-item avatar">
-                                <i class="material-icons circle red">query_builder</i>
+                                <i class="fa-lg fa fa-clock-o circleBorder clockBorder" aria-hidden="true"></i>
                                 <span class="title">walking_minutes</span>
                                 <p>
                                     First Line <br>
@@ -301,16 +315,11 @@
 
                     </div>
 
-                    <div class="col s12 m7 offset-m1 valign" style="background-color:green">
-                        <iframe width="610"
-                                height="270"
-                                frameborder="0" 
-                                style="border:0"
-                                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyACI9vLSWY5qyJsCEI5JFqRJfNiVPwrJc0&q=Space+Needle,Seattle+WA" 
-                                allowfullscreen
-                                >
+                    <div class="col s12 m7 offset-m1 valign" id="map" style="background-color:green">
+                        <script async defer
+                                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhSO1J40Q6kIf4OcqR04FbHZNliHrKdw0&callback=initMap">
+                        </script>
 
-                        </iframe>
                     </div>
 
                 </div>
@@ -325,6 +334,8 @@
     </main>
 
 
+    <img class="imageToCaption" src="images/Trophies (Medium).jpg" data-caption="some caption" width="500" />
+
     <footer class="page-footer">
         <div class="footer-copyright">
             <div class="container">
@@ -338,33 +349,32 @@
     <!--Import fotorama.css for image slider-->
     <script src="js/fotorama.js"></script>
 
+    <!-- loading the image caption scripts -->
+    <script  type="text/javascript" src="js/jquery.caption.min.js"></script>
+
     <!-- load other scripts -->
     <script>
 
         loadKeyTerms();
         loadMuseums();
 
-
-        /* THIS IS A DEUGGING SCRIPT */
-        /* it must be entirely commented out when not debugging! */
-        $(document).ready(function () {
-            //switches:
-            var activePage;
-            //activePage = "main";
-            activePage = "details";
+    </script>
 
 
-            //appliers
-            if (activePage == "main") {
-                $(".mainPage").show();
-                $(".detailsPage").hide();
-            }
-            if (activePage == "details") {
-                $(".mainPage").hide();
-                $(".detailsPage").show();
-            }
-
+    <!--setting up the image caption module-->
+    <script>
+        $(window).on("load", function () {
+            $(".imageToCaption").captionjs({
+                'schema': false,
+                'mode': 'stacked',   // default | stacked | animated | hide
+                'debug_mode': true,       // Output debug info to the JS console
+                'force_dimensions': false,
+                'is_responsive': true,       // Ensure the figure and image change size when in responsive layout. Requires a container to control responsiveness!
+                'inherit_styles': true        // Have the caption.js container inherit box-model properties from the original image
+            });
         });
+
+
 
     </script>
 

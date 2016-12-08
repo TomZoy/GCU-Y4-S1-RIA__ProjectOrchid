@@ -105,3 +105,67 @@ $(document).ready(function () {
     $('.collapsible').collapsible();
 });
 
+//<!--set up the map-->
+
+function initMap() {
+    var museumLocation = {lat: 55.868, lng: -4.2905};
+    var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 16,
+        center: museumLocation
+    });
+
+    var contentString = '<div id="content">' +
+    '<div id="siteNotice">' +
+    '</div>' +
+    '<h1 id="firstHeading" class="firstHeading">Uluru</h1>' +
+    '<div id="bodyContent">' +
+    '<p><b>Uluru</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
+    'sandstone rock formation in the southern part of the ' +
+    'Heritage Site.</p>' +
+    '<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">' +
+    'https://en.wikipedia.org/w/index.php?title=Uluru</a> ' +
+    '(last visited June 22, 2009).</p>' +
+    '</div>' +
+    '</div>';
+
+
+
+    var infowindow = new google.maps.InfoWindow({
+        content: contentString,
+        maxWidth: 400,
+        position: museumLocation
+
+    });
+
+    var marker = new google.maps.Marker({
+        position: museumLocation,
+        map: map,
+        title: 'Uluru (Ayers Rock)'
+    });
+    marker.addListener('click', function () {
+        infowindow.open(map, marker);
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      var marker = new google.maps.Marker({
+          position: marker,
+          map: map
+      });
+
+      marker.setMap(map);
+
+  }
