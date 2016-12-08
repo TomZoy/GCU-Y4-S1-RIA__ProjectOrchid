@@ -26,6 +26,10 @@ body{
     background-color: #ddc482;
 }
 
+.highlight {
+    #c47094 !important
+}
+
 
 #heroImage {
     background-color: #ddc482;
@@ -46,6 +50,10 @@ body{
 #navbarCenter {
     position:relative;
     left:50px;
+}
+
+.container {
+    width: 80%;
 }
 
 
@@ -103,4 +111,65 @@ figcaption {
     opacity: 0.7;
     padding: 15px;
 
+}
+
+#searchBarWrapper {
+    margin-top:0px;
+    box-shadow:none;
+    border-radius:unset;
+}
+
+#filterWrapper {
+    margin-bottom:0px;
+    background-color:white;
+    box-shadow:none;
+    text-align:left;
+
+}
+
+#mainFilterDropdownWrapper{
+    display: flex; 
+    justify-content: space-around;
+}
+
+.filterDropdownWrapper {
+
+    text-align:center;
+}
+
+.filterDropdown {
+    display:block;
+    height: initial;
+    padding: unset;
+    border: none;
+
+   -webkit-appearance: none;
+   -moz-appearance: none;
+   appearance: none;
+   background: transparent;
+
+   width: 120px;
+
+    background: url(https://cdn0.iconfinder.com/data/icons/slim-square-icons-basics/100/basics-08-128.png) 98% / 15% no-repeat white;
+   
+}
+
+
+.mapInfoWindowImage {
+    max-width:370px;
+    max-height:200px;
+
+    left: 15%;
+    position: relative;
+    
+}
+
+.card-action a {
+    float:right;
+}
+
+
+
+#searchResultsMainWrapper{
+    display:none;
 }

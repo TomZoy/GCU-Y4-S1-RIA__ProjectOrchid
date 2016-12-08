@@ -25,17 +25,21 @@
     <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
     <!--Import fotorama.css for image slider-->
     <link href="css/fotorama.css" rel="stylesheet" />
+    <link href="css/jquery-ui.min.css" rel="stylesheet" />
 
     <!-- import caption css -->
     <link href="css/captionjs.min.css" rel="stylesheet" />
 
-
+    <link href="css/easy-autocomplete.css" rel="stylesheet" />
 
     <!--Import jQuery before materialize.js-->
     <script src="js/jquery-3.1.1.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
     <!--<script src="https://code.jquery.com/jquery-migrate-3.0.0.js"></script>-->
-    <script type="text/javascript" src="js/materialize.min.js"></script>
 
+
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script src="js/jquery.easy-autocomplete.min.js"></script>
 
 
 
@@ -51,11 +55,11 @@
         /* it must be entirely commented out when not debugging! */
         $(document).ready(function () {
 
-            
+
             //switches:
             var activePage;
-            //activePage = "main";
-            activePage = "details";
+            activePage = "main";
+            //activePage = "details";
 
 
 
@@ -70,7 +74,7 @@
                 $(".mainPage").hide();
                 $(".detailsPage").show();
             }
-            
+
 
         });
 
@@ -102,10 +106,42 @@
 
                 <div class="container">
                     <div class="row valign center-align">
+                        <div class="col s10 offset-s1 card m6 offset-m3" id="filterWrapper">
+                            <span style="float:left">filter by:</span>
+                            <span id="mainFilterDropdownWrapper">
+                                <span class="filterDropdownWrapper">
+                                    <select class="filterDropdown">
+                                        <option>Museum Type</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                    </select>
+                                </span>
+                                <span class="filterDropdownWrapper">
+                                    <select class="filterDropdown">
+                                        <option>opening times</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                    </select>
 
+                                </span>
+                                <span class="filterDropdownWrapper">
+                                    <select class="filterDropdown">
+                                        <option>distance</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                    </select>
+                                </span>
+                            </span>
+                        </div>
                         <div class="input-field col s10 offset-s1 card m4 offset-m4" id="searchBarWrapper">
-                            <input type="text" id="autocomplete-input" class="autocomplete" placeholder="search for a museum">
-                            <i class="material-icons" style="position: absolute;right: 10px;top: 10px;">search</i>
+
+                            <input id="searchBar" />
+
+                            <!--<input type="text" id="autocomplete-input" class="autocomplete" placeholder="search for a museum">
+                            <i class="material-icons" style="position: absolute;right: 10px;top: 10px;">search</i>-->
                             <!--<label for="autocomplete-input">Autocomplete</label>-->
                         </div>
 
@@ -133,32 +169,6 @@
             </div>
 
 
-
-            <!--
-                Framework version - doesn't work that well =S
-
-                <div class="carousel carousel-slider center">
-                <a class="carousel-item" href="#">
-
-
-
-                        <img src="images/Kelvingrove_Front_View_1 (Medium).jpg">
-                    <span style="position:relative; top:500px; z-index:1000"> something here </span>
-
-
-                </a>
-                <a class="carousel-item" href="#"><img src="images/Kelvingrove_Front_View_2 (Medium).jpg"></a>
-                <a class="carousel-item" href="#"><img src="images/Kelvingrove_Front_View_3 (Medium).jpg"></a>
-                <a class="carousel-item" href="#"><img src="images/Kelvingrove_Front_View_4 (Medium).jpg"></a>
-                <a class="carousel-item" href="#"><img src="images/Kelvingrove_Rear_View_1 (Medium).jpg"></a>
-                <a class="carousel-item" href="#"><img src="images/Kelvingrove_Rear_View_2 (Medium).jpg"></a>
-                <a class="carousel-item" href="#"><img src="images/Organ_Kelvingrove (Medium).jpg"></a>
-                <a class="carousel-item" href="#"><img src="images/Heads_Kelvingrove (Medium).jpg"></a>
-                <a class="carousel-item" href="#"><img src="images/Plane_Elephant_Giraffe (Medium).jpg"></a>
-
-            </div>-->
-
-
         </div>
 
     </header>
@@ -166,64 +176,117 @@
     <main>
 
         <div class="mainPage">
-
             <div class="container">
-                <div class="row">
-                    <div class="col s12 m6">
-                        <h5 class="section scrollspy" id="featured">
-                            Explore our featured and staff picked venues
+
+                <div class="row" id="searchResultsMainWrapper">
+                    <div class="col s12 m8 offset-m2">
+                        <h5 class="ert" id="searchResults">
+                            searchResults here
                         </h5>
                     </div>
                 </div>
 
 
-
-                <div class="row">
-                    <div class="col s12 m5">
-
-                        <div class="card medium">
-                            <div class="card-image">
-                                <img src="#">
-                                <span class="card-title">Card Title 1</span>
-                            </div>
-                            <div class="card-content">
-                                <p>
-                                    I am a very simple card. I am good at containing small bits of information.
-                                    I am convenient because I require little markup to use effectively.
-                                </p>
-                            </div>
-                            <div class="card-action">
-                                <a href="#">This is a link</a>
-                            </div>
+                    <div class="row">
+                        <div class="col s12 m6">
+                            <h5 class="section scrollspy" id="featured">
+                                Explore our featured and staff picked venues
+                            </h5>
                         </div>
                     </div>
-                    <div class="col s12 m5 offset-m1">
-                        <div class="card medium">
-                            <div class="card-image">
-                                <img src="#">
-                                <span class="card-title">Card Title 2</span>
-                            </div>
-                            <div class="card-content">
-                                <p>
-                                    I am a very simple card. I am good at containing small bits of information.
-                                    I am convenient because I require little markup to use effectively.
-                                </p>
-                            </div>
-                            <div class="card-action">
-                                <a href="#">This is a link</a>
+
+
+                <script>
+                    $("#featured").click(function () {
+                        $("#searchResultsMainWrapper").show("blind", 1000);
+                    });
+                </script>
+
+
+
+
+                    <div class="row">
+                        <div class="col s12 m5">
+
+                            <div class="card large">
+                                <div class="card-image">
+                                    <img id="feature1Image" src="#">
+                                    <span id="feature1Title" class="card-title">Card Title 1</span>
+                                </div>
+                                <div class="card-content">
+                                    <p id="feature1Desc">
+                                        I am a very simple card. I am good at containing small bits of information.
+                                        I am convenient because I require little markup to use effectively.
+                                    </p>
+                                </div>
+                                <div class="card-action">
+                                    <a href="#">This is a link</a>
+                                </div>
                             </div>
                         </div>
+                        <div class="col s12 m5 offset-m2">
+                            <div class="card large">
+                                <div class="card-image">
+                                    <img id="feature2Image" src="#">
+                                    <span id="feature2Title" class="card-title">Card Title 2</span>
+                                </div>
+                                <div class="card-content">
+                                    <p id="feature2Desc">
+                                        I am a very simple card. I am good at containing small bits of information.
+                                        I am convenient because I require little markup to use effectively.
+                                    </p>
+                                </div>
+                                <div class="card-action">
+                                    <a href="#">This is a link</a>
+                                </div>
+                            </div>
 
 
+                        </div>
                     </div>
+
+
+
+                    <div class="row">
+                        <div class="col s12">
+                            <h5 class="section scrollspy" id="featured">
+                                Map
+                            </h5>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col s12 valign " id="mainMap" style="height: 500px;">
+                            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhSO1J40Q6kIf4OcqR04FbHZNliHrKdw0&callback=initMaps" async defer>
+                            </script>
+                        </div>
+                    </div>
+
+
+
+
+
                 </div>
 
 
-            </div>
+
+
+
+
+
 
 
 
         </div>
+
+
+
+
+
+
+
+
+
 
         <div class="detailsPage">
 
@@ -249,7 +312,7 @@
                         <ul class="collapsible" data-collapsible="accordion">
                             <li>
                                 <div class="collapsible-header active"><i class="material-icons mdi-maps-place">schedule</i>Opening Hours</div>
-                                <div class="collapsible-body"><p>"Monday"=>"10am-5pm","Tuesday"=>"10am-5pm","Wednesday"=>"10am-5pm","Thursday"=>"10am-5pm","Friday"=>"11am-5pm","Saturday"=>"10am-5pm","Sunday"=>"11am-5pm"</p></div>
+                                <div class="collapsible-body"><p id="openingTimesContainer">"Monday"=>"10am-5pm","Tuesday"=>"10am-5pm","Wednesday"=>"10am-5pm","Thursday"=>"10am-5pm","Friday"=>"11am-5pm","Saturday"=>"10am-5pm","Sunday"=>"11am-5pm"</p></div>
                             </li>
                         </ul>
 
@@ -315,10 +378,7 @@
 
                     </div>
 
-                    <div class="col s12 m7 offset-m1 valign" id="map" style="background-color:green">
-                        <script async defer
-                                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhSO1J40Q6kIf4OcqR04FbHZNliHrKdw0&callback=initMap">
-                        </script>
+                    <div class="col s12 m7 offset-m1 valign" id="detailsMap" style="background-color:green">
 
                     </div>
 
@@ -334,7 +394,9 @@
     </main>
 
 
-    <img class="imageToCaption" src="images/Trophies (Medium).jpg" data-caption="some caption" width="500" />
+
+
+
 
     <footer class="page-footer">
         <div class="footer-copyright">
@@ -350,15 +412,7 @@
     <script src="js/fotorama.js"></script>
 
     <!-- loading the image caption scripts -->
-    <script  type="text/javascript" src="js/jquery.caption.min.js"></script>
-
-    <!-- load other scripts -->
-    <script>
-
-        loadKeyTerms();
-        loadMuseums();
-
-    </script>
+    <script type="text/javascript" src="js/jquery.caption.min.js"></script>
 
 
     <!--setting up the image caption module-->
