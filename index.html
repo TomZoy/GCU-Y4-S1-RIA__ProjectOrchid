@@ -154,18 +154,24 @@
         <div class="detailsPage">
 
 
-            <div class="fotorama"
+            <div id="selectedMuseumScrollImage"  class="fotorama"
+                     data-width="100%"
+                     data-ratio="1900/550"
+                     data-maxheight="550"
+                 data-fit="cover"
                  data-loop="true"
                  data-autoplay="true"
                  data-shuffle="true"
                  data-arrows="true"
                  data-click="true"
-                 data-swipe="false">
+                 data-swipe="false"
+                 data-auto="false"
+                 >
 
-                <img src="images/Kelvingrove_Front_View_1 (Medium).jpg" data-caption="Front View Of Kelvingrove 1">
+                <!--<img src="images/Kelvingrove_Front_View_1 (Medium).jpg" data-caption="Front View Of Kelvingrove 1">
                 <img src="images/Kelvingrove_Front_View_2 (Medium).jpg" data-caption="Front View Of Kelvingrove 2">
                 <img src="images/Kelvingrove_Front_View_3 (Medium).jpg" data-caption="Front View Of Kelvingrove 3">
-                <img src="images/Kelvingrove_Front_View_4 (Medium).jpg" data-caption="Front View Of Kelvingrove 4">
+                <img src="images/Kelvingrove_Front_View_4 (Medium).jpg" data-caption="Front View Of Kelvingrove 4">-->
             </div>
 
 
@@ -196,13 +202,6 @@
                     </div>
 
 
-                <script>
-                    $("#featured").click(function () {
-                        $("#searchResultsMainWrapper").show("blind", 1000);
-                    });
-                </script>
-
-
 
 
                     <div class="row">
@@ -215,8 +214,6 @@
                                 </div>
                                 <div class="card-content">
                                     <p id="feature1Desc">
-                                        I am a very simple card. I am good at containing small bits of information.
-                                        I am convenient because I require little markup to use effectively.
                                     </p>
                                 </div>
                                 <div class="card-action">
@@ -232,8 +229,6 @@
                                 </div>
                                 <div class="card-content">
                                     <p id="feature2Desc">
-                                        I am a very simple card. I am good at containing small bits of information.
-                                        I am convenient because I require little markup to use effectively.
                                     </p>
                                 </div>
                                 <div class="card-action">
@@ -293,7 +288,16 @@
             <div class="container">
                 <div class="row">
                     <div class="col s12">
-                        <section>Glasgow's main art gallery and museum situated in the west end of the city.</section>
+                        <h2 id="selectedMuseumName"></h2>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col s12">
+                        <blockquote>
+                            <h6 id="selectedMuseumType"></h6>
+                            <h5 id="selectedMuseumDescription"></h5>
+                        </blockquote>
                     </div>
                 </div>
 
@@ -312,23 +316,20 @@
                         <ul class="collapsible" data-collapsible="accordion">
                             <li>
                                 <div class="collapsible-header active"><i class="material-icons mdi-maps-place">schedule</i>Opening Hours</div>
-                                <div class="collapsible-body"><p id="openingTimesContainer">"Monday"=>"10am-5pm","Tuesday"=>"10am-5pm","Wednesday"=>"10am-5pm","Thursday"=>"10am-5pm","Friday"=>"11am-5pm","Saturday"=>"10am-5pm","Sunday"=>"11am-5pm"</p></div>
+                                <div class="collapsible-body"><p id="openingTimesContainer"></p></div>
                             </li>
                         </ul>
 
                         <ul class="collapsible" data-collapsible="accordion">
                             <li>
                                 <div class="collapsible-header active"><i class="material-icons mdi-maps-place">today</i>Closed On</div>
-                                <div class="collapsible-body"><p>"January 1st", "January 2nd", "December 24th", "December 25th", "December 26th", "December 31st"</p></div>
+                                <div class="collapsible-body"><p id="closedDayssContainer"></p></div>
                             </li>
                         </ul>
 
                     </div>
 
-                    <div class="col s12 m6 offset-m1 valign" style="background-color:green">
-
-
-                        imageToCaption
+                    <div id="selectedFetureImageContainer" class="col s12 m6 offset-m1 valign" style="background-color:green">
 
                     </div>
 
@@ -340,38 +341,31 @@
                     <div class="col s12 m4" style="background-color:aqua">
                         <h5> Getting there </h5>
 
-                        <ul class="collection">
+                        <ul class="collection infoboxItemWrapper">
                             <li class="collection-item avatar">
 
                                 <i class="fa-lg fa fa-car circleBorder carBorder" aria-hidden="true"></i>
-                                <span class="title">driving_miles</span>
-                                <p>
-                                    First Line <br>
-                                    Second Line
+                                <span class="title">driving distance (miles)</span>
+                                <p id="drivingMiles">
+                                        sdfsdf
                                 </p>
                             </li>
                             <li class="collection-item avatar">
                                 <i class="fa-lg fa fa-clock-o circleBorder clockBorder" aria-hidden="true"></i>
-                                <span class="title">driving_minutes</span>
-                                <p>
-                                    First Line <br>
-                                    Second Line
+                                <span class="title">driving time (minutes)</span>
+                                <p id="drivingMinutes">
                                 </p>
                             </li>
                             <li class="collection-item avatar">
                                 <i class="fa-lg fa fa-male circleBorder manBorder" aria-hidden="true"></i>
-                                <span class="title">walking_miles</span>
-                                <p>
-                                    First Line <br>
-                                    Second Line
+                                <span class="title">walking distance (miles)</span>
+                                <p id="walkingMiles">
                                 </p>
                             </li>
                             <li class="collection-item avatar">
                                 <i class="fa-lg fa fa-clock-o circleBorder clockBorder" aria-hidden="true"></i>
-                                <span class="title">walking_minutes</span>
-                                <p>
-                                    First Line <br>
-                                    Second Line
+                                <span class="title">walking time (minutes)</span>
+                                <p id="walkingTime">
                                 </p>
                             </li>
                         </ul>
@@ -385,7 +379,11 @@
                 </div>
 
 
+                <div class="row">
 
+                    <div class="chip" id="selectedMuseumURLWrapper">
+                    </div>
+                </div>
 
 
             </div>
@@ -417,6 +415,7 @@
 
     <!--setting up the image caption module-->
     <script>
+        /*
         $(window).on("load", function () {
             $(".imageToCaption").captionjs({
                 'schema': false,
@@ -428,7 +427,7 @@
             });
         });
 
-
+        */
 
     </script>
 
