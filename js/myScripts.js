@@ -11,6 +11,8 @@ var selectedMuseumID = null;
 
 var loadSelectedMuseumRunning = false;
 
+var searchResultIDs =[];
+
 
 
 /***************************************************************************************/
@@ -62,26 +64,6 @@ $("#dataTable tbody tr").on("click", function () {
 // animate the main searchbar and filter-bar
 $(document).ready(function () {
     var sb = $("#searchBarWrapper");
-
-    /*
-    sb.focusin(function () {
-        if (sb.hasClass("m4")) {
-            sb.removeClass("m4 offset-m4");
-            sb.addClass("m8 offset-m2");
-        }
-        return false;
-    });
-
-    sb.focusout(function () {
-        if (sb.hasClass("m8")) {
-            sb.removeClass("m8 offset-m2");
-            sb.addClass("m4 offset-m4");
-        }
-
-        return false;
-    });
-    */
-
 });
 
 // read in the two data-files */
@@ -89,6 +71,12 @@ $(document).ready(function () {
     loadKeyTerms();
 });
 
+//listener on filterDropdowns
+$(document).ready(function () {
+    $("#filterType").change(function () {
+        filterResults($("#filterType").val());
+    });
+});
 
 /***************************************************************************************/
 /* "private" methods, triggered by other methods */
@@ -157,28 +145,78 @@ function searchResponseHandler(val)
     else //it's a term, fetch + open results
     {
 
-        resultIDs = findMuseumsWithKeyterm(parseInt(val));
+
+
+
+
+        searchResultIDs = findMuseumsWithKeyterm(parseInt(val));
+
+        buildFilterDropdowns();
+        buildSearchResults(searchResultIDs);
+
         $("#searchResultsMainWrapper").show("blind", 1000);
         console.log(parseInt(val));
-        console.log(resultIDs);
-
-        var resultLi = "";
-        for (i = 0; i < resultIDs.length; i++)
-        {
-            resultLi += '<li class="collection-item infoWindowViewDetails">'
-                + museums[resultIDs[i]].museum_name
-                + '<span style="float:right" onclick="selectMuseumDirectly(this)" id="m' + resultIDs[i] + '" > view details...</span></li>';
-        }
+        console.log(searchResultIDs);
 
 
-        $("#searchResultsContent").html('<ul class="collection">'+ resultLi + '</ul>');
         
-
-
-
 
     }
 
+}
+
+function buildFilterDropdowns()
+{
+    searchResultTypes = [];
+    filterTypeHTML = "<option>Museum Type</option>";
+
+    for (i = 0; i < searchResultIDs.length; i++) {
+
+        //build filter dropdowns
+        if (searchResultTypes.indexOf(museums[searchResultIDs[i]].museum_type) == -1) {
+            searchResultTypes.push(museums[searchResultIDs[i]].museum_type);
+            filterTypeHTML += '<option>' + museums[searchResultIDs[i]].museum_type + '</option>';
+        }
+    }
+
+    $("#filterType").html(filterTypeHTML);
+}
+
+function buildSearchResults(resultsArray)
+{
+    var resultLi = "";
+    for (i = 0; i < resultsArray.length; i++) {
+
+        //build up the list to display
+        resultLi += '<li class="collection-item infoWindowViewDetails">'
+            + museums[resultsArray[i]].museum_name +' - ' + museums[resultsArray[i]].museum_type
+            + '<span style="float:right" onclick="selectMuseumDirectly(this)" id="m' + resultsArray[i] + '" > view details...</span></li>';
+    }
+
+    $("#searchResultsContent").html('<ul class="collection">' + resultLi + '</ul>');
+}
+
+
+
+function filterResults(type)
+{
+
+    var filteredSearchResultIDs = [];
+
+    for (i = 0; i < searchResultIDs.length; i++) {
+
+        if (type == "Museum Type") {
+            filteredSearchResultIDs.push(searchResultIDs[i]);
+        }
+        else {
+
+            if (museums[searchResultIDs[i]].museum_type == type) {
+                filteredSearchResultIDs.push(searchResultIDs[i]);
+            }
+        }
+    }
+
+    buildSearchResults(filteredSearchResultIDs);
 }
 
 
