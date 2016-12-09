@@ -51,8 +51,6 @@
     <script src="js/myScripts.js"></script>
 
     <script>
-        /* THIS IS A DEUGGING SCRIPT */
-        /* it must be entirely commented out when not debugging! */
         $(document).ready(function () {
 
 
@@ -94,9 +92,8 @@
                 <a href="#" class="brand-logo">Glasgow Museums</a>
                 <!--<span class="brand-logo" id="navbarCenter">Kelvingrove Art Gallery and Museum</span>-->
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a href="#top">Home</a></li>
-                    <li><a href="#featured">Featured venues</a></li>
-                    <li><a href="#">About</a></li>
+                    <li><a class="backToMain" href="#top">Home</a></li>
+                    <!--<li ><a href="#featured">Featured venues</a></li>-->
                 </ul>
             </div>
         </nav>
@@ -154,28 +151,11 @@
                             museums matching the search criteria:
                         </h5>
                         <div id="filterWrapper">
-                            <span style="float:left">filter by:</span>
+                            <span style="float:left; margin-left: 10px;">filter by:</span>
                             <span id="mainFilterDropdownWrapper">
                                 <span class="filterDropdownWrapper">
                                     <select class="filterDropdown" id="filterType">
                                         <option>Museum Type</option>
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                    </select>
-                                </span>
-                                <span class="filterDropdownWrapper">
-                                    <select class="filterDropdown">
-                                        <option>opening times</option>
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                    </select>
-
-                                </span>
-                                <span class="filterDropdownWrapper">
-                                    <select class="filterDropdown">
-                                        <option>distance</option>
                                         <option>1</option>
                                         <option>2</option>
                                         <option>3</option>
@@ -308,15 +288,15 @@
                     </div>
                 </div>
 
-                <div class="row valign-wrapper" style="background-color:blueviolet">
+                <div class="row valign-wrapper">
 
-                    <div class="col s12 m5" style="background-color:aqua">
+                    <div class="col s12 m5">
                         <h5> Opening times </h5>
 
                         <section style="padding-left:25px;">
                             <p>
-                                NOW OPEN <br />
-                                closing in 1h 15m
+                                <!--NOW OPEN <br />
+                                closing in 1h 15m-->
                             </p>
                         </section>
 
@@ -336,16 +316,16 @@
 
                     </div>
 
-                    <div id="selectedFetureImageContainer" class="col s12 m6 offset-m1 valign" style="background-color:green">
+                    <div id="selectedFetureImageContainer" class="col s12 m6 offset-m1 valign">
 
                     </div>
 
                 </div>
 
 
-                <div class="row valign-wrapper" style="background-color:greenyellow">
+                <div class="row valign-wrapper">
 
-                    <div class="col s12 m4" style="background-color:aqua">
+                    <div class="col s12 m4">
                         <h5> Getting there </h5>
 
                         <ul class="collection infoboxItemWrapper">
@@ -379,7 +359,7 @@
 
                     </div>
 
-                    <div class="col s12 m7 offset-m1 valign" id="detailsMap" style="background-color:green">
+                    <div class="col s12 m7 offset-m1 valign" id="detailsMap">
 
                     </div>
 

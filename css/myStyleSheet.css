@@ -250,3 +250,15 @@ figcaption {
 .easy-autocomplete-container {
     left: 12px;
 }
+
+#selectedFetureImageContainer {
+    text-align:center;
+}
+
+.brand-logo {
+    margin-left:50px;
+}
+
+#filterWrapper:first-child {
+    margin-left:20px;
+}

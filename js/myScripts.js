@@ -78,6 +78,16 @@ $(document).ready(function () {
     });
 });
 
+
+(function ($) {
+    $.fn.goTo = function () {
+        $('html, body').animate({
+            scrollTop: $(this).offset().top + 'px'
+        }, 'slow');
+        return this; // for chaining...
+    }
+})(jQuery);
+
 /***************************************************************************************/
 /* "private" methods, triggered by other methods */
 
@@ -155,6 +165,8 @@ function searchResponseHandler(val)
         buildSearchResults(searchResultIDs);
 
         $("#searchResultsMainWrapper").show("blind", 1000);
+        $("#searchResultsMainWrapper").goTo();
+
         console.log(parseInt(val));
         console.log(searchResultIDs);
 
