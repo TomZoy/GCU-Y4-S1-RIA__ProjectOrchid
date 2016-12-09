@@ -44,6 +44,10 @@ body{
 
 /* overWriting the framework*/
 
+.underlined {
+    text-decoration:underline;
+}
+
 td, th {
     padding: 2px 5px;
 }
@@ -78,6 +82,7 @@ td, th {
         border-bottom: 1px solid #666;
         cursor:pointer;
     }
+
 
 
 /* overWriting the Fotorama plugin */
@@ -149,6 +154,11 @@ figcaption {
     margin-top:0px;
     box-shadow:none;
     border-radius:unset;
+    padding-right: 37px;
+}
+
+.easy-autocomplete {
+    width:100% !important;
 }
 
 #filterWrapper {
@@ -214,3 +224,19 @@ figcaption {
 .infoboxItemWrapper p {
     padding-left: 20px;
 }
+
+.backButton{
+    margin:0;
+    display:inline;
+}
+
+
+.linkImitator{
+    border-bottom: 1px solid #aaa;
+    text-decoration: none;
+}
+
+    .linkImitator:hover {
+        border-bottom: 1px solid #666;
+        cursor:pointer;
+    }

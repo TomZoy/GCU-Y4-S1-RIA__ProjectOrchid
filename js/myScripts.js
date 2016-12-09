@@ -9,6 +9,8 @@ var mainMap; //a handler object for the main "search map"
 
 var selectedMuseumID = null;
 
+var loadSelectedMuseumRunning = false;
+
 
 
 /***************************************************************************************/
@@ -45,9 +47,17 @@ $(document).ready(function () {
     $('.collapsible').collapsible();
 });
 
+//set up back buttons
+$(document).ready(function () {
+    $('.backToMain').on("click", function () {
+        backToMain();
+        console.log("back button clicked");
+    });
+});
 
-
-
+$("#dataTable tbody tr").on("click", function () {
+    console.log($(this).text());
+});
 
 // animate the main searchbar and filter-bar
 $(document).ready(function () {
@@ -94,11 +104,38 @@ $(document).ready(function () {
 //    });
 //};
 
-//function to get the selected museum from the map infowindow
-function selectMuseumFromMainMap(id)
+//function to get back from details to main screen
+function backToMain()
 {
-    console.log(id.id);
-    searchResponseHandler(id.id);
+    loadSelectedMuseumRunning = false;
+    $("#selectedMuseumScrollImageWrapper").empty();
+    $("#selectedMuseumScrollImageWrapper").html('<div id="selectedMuseumScrollImage" class="fotorama" data-width="100%" '+
+        'data-ratio="1900/550"'+
+        'data-maxheight="550"'+
+        'data-fit="cover"'+
+        'data-loop="true"'+
+        'data-autoplay="true"'+
+        'data-shuffle="true"'+
+        'data-arrows="true"'+
+        'data-click="true"'+
+        'data-swipe="false"'+
+        'data-auto="false">'+
+        '</div>');
+
+    $(".detailsPage").hide("blind", 1000,
+    function () {
+        $(".mainPage").show("blind", 1000);
+    });
+}
+
+
+
+
+//function to get the selected museum from the map infowindow
+function selectMuseumDirectly(caller)
+{
+    console.log(caller.id);
+    searchResponseHandler(caller.id);
 }
 
 // function to drive the search-bar - easyautocomplete version
@@ -119,12 +156,53 @@ function searchResponseHandler(val)
     }
     else //it's a term, fetch + open results
     {
-        /// THIS IS INCOMPLETE !!!!!
+
+        resultIDs = findMuseumsWithKeyterm(parseInt(val));
+        $("#searchResultsMainWrapper").show("blind", 1000);
+        console.log(parseInt(val));
+        console.log(resultIDs);
+
+        var resultLi = "";
+        for (i = 0; i < resultIDs.length; i++)
+        {
+            resultLi += '<li class="collection-item infoWindowViewDetails">'
+                + museums[resultIDs[i]].museum_name
+                + '<span style="float:right" onclick="selectMuseumDirectly(this)" id="m' + resultIDs[i] + '" > view details...</span></li>';
+        }
+
+
+        $("#searchResultsContent").html('<ul class="collection">'+ resultLi + '</ul>');
+        
+
+
+
+
     }
 
 }
 
-var loadSelectedMuseumRunning = false;
+
+function findMuseumsWithKeyterm(keyterm)
+{
+    resultIDs = [];
+
+    for (i = 0; i < museums.length; i++)
+    {
+        for (j = 0; j < museums[i].keyterms.length; j++ )
+        {
+
+            if (museums[i].keyterms[j] == keyterm)
+            {
+                resultIDs.push(i);
+            }
+        }
+    }
+
+    return resultIDs;
+}
+
+
+
 function loadSelectedMuseum()
 {
     if (!loadSelectedMuseumRunning) {
@@ -135,6 +213,7 @@ function loadSelectedMuseum()
         //setting the top image-slider
         $('#selectedMuseumScrollImage').html(buildselectedMuseumScrollImages());
         $('.fotorama').fotorama();
+
 
         //setting the name
         $('#selectedMuseumName').html(museums[selectedMuseumID].museum_name);
@@ -156,7 +235,7 @@ function loadSelectedMuseum()
             '<img id="selectedFeatureImage" alt="feature image" src="'
             + getRandomImageURL(selectedMuseumID)
             + '"/>'
-            + '<p class="center-align"> featured image </p>'
+            + '<p class="center-align">featured image</p>'
             );
 
         //setting up distances and times
@@ -216,9 +295,10 @@ function buildselectedMuseumScrollImages()
 
     for (i = 0; i < images.length;i++)
     {
+        
         output += '<img src="' + images[i] + '" data-caption="' + museums[selectedMuseumID].images[i].description + '">';
     }
-
+    console.log(output);
     return output;
 }
 
@@ -387,7 +467,7 @@ function buildmarkers() {
             '<img class="mapInfoWindowImage" src="images/' + museums[id].images[0].url + '" />' +
             
             '<p>' + museums[id].museum_description + '</p>' +
-            '<div class="right-align infoWindowViewDetails"><span onclick="selectMuseumFromMainMap(this)" id="m' + id + '">view details...</span></div>' +
+            '<div class="right-align infoWindowViewDetails"><span onclick="selectMuseumDirectly(this)" id="m' + id + '">view details...</span></div>' +
             '</div>' +
             '</div>';
 
@@ -472,6 +552,11 @@ function onDataLoaded(){
         $("#feature1Desc").html(museums[f1].museum_description);
         $("#feature2Desc").html(museums[f2].museum_description);
 
+        $("#mainFeature1 .card-action").html('<a onclick="selectMuseumDirectly(this)" id = "m' + f1 + '" href="#">view details...</a>');
+        $("#mainFeature2 .card-action").html('<a onclick="selectMuseumDirectly(this)" id = "m' + f2 + '" href="#">view details...</a>');
+
+        
+
 
     }
 
@@ -550,9 +635,9 @@ function buildDetailsMapInfoWindowContent() {
         '<h5 id="firstHeading" class="firstHeading">' + museums[selectedMuseumID].museum_name + '</h5>' +
         '<div id="bodyContent">' +
 
-        '<p> venue type: ' + museums[selectedMuseumID].museum_type + '</p>' +
+        '<p> <span class="underlined">venue type</span>: ' + museums[selectedMuseumID].museum_type + '</p>' +
         '<p>' + museums[selectedMuseumID].museum_description + '</p>' +
-        '<p> address: <br />' + museums[selectedMuseumID].address + '</p>' +
+        '<p> <span class="underlined">address</span>: <br />' + museums[selectedMuseumID].address + '<br/>' +
             museums[selectedMuseumID].postcode + '</p>' +
         '</div>' +
         '</div>';
